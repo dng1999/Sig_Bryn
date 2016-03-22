@@ -1,3 +1,8 @@
+/*Dorothy Ng
+APCS2 pd10
+HW17 -- Iteratorator
+2016-03-21
+*/
 /*****************************************************
  * class ItrWork -- skeleton
  * Allows for familiarization with iterators
@@ -21,7 +26,11 @@ public class ItrWork {
     //explicitly using an iterator
     //returns a boolean to indicate whether key is present in L
     public static boolean foundB( Integer key, List<Integer> L ) { 
-	/*** YOUR IMPLEMENTATION HERE ***/
+	Iterator<Integer> list = L.iterator();
+	while (list.hasNext()){
+	    if (list.next().equals(key)) return true;
+	}
+	return false;
     }
 
     //using FOREACH loop
@@ -37,14 +46,24 @@ public class ItrWork {
     //explicitly using an iterator
     //returns a list containing the odd numbers in L
     public static List<Integer> oddsB( List<Integer> L ) { 
-	/*** YOUR IMPLEMENTATION HERE ***/
+	Iterator<Integer> list = L.iterator();
+	List<Integer> odd = new ArrayList<Integer>();
+	Integer num;
+	while (list.hasNext()){
+	    num = list.next();
+	    if (num%2==1) odd.add(num);
+	}
+	return odd;
     }
 
 
     //explicitly using an iterator
     //modifies L s.t. it contains no evens
     public static void removeEvens( List<Integer> L ) { 
-	/*** YOUR IMPLEMENTATION HERE ***/
+	Iterator<Integer> list = L.iterator();
+	while (list.hasNext()){
+	    if ((list.next()%2)==0) list.remove();
+	}
     }
 
 
@@ -59,12 +78,17 @@ public class ItrWork {
 
 	// TASK: write code to print the contents of ArrayList L...
 
-	/*~~~~~~~~~~~~~~~m~o~v~e~~m~e~~d~o~w~n~~~~~~~~~~~~~~
 	// a) using a FOREACH loop
-
-
+	for (Integer num:L){
+	    System.out.print(num+" ");
+	}
+	System.out.println();
 	// b) explicitly using an iterator
-
+	Iterator<Integer> list = L.iterator();
+	while (list.hasNext()){
+	    System.out.print(list.next()+" ");
+	}
+	System.out.println();
 
 	System.out.println("\nTesting foundA...");
 	System.out.println("9 in L? -> " + foundA(9,L) );
@@ -85,6 +109,8 @@ public class ItrWork {
 	System.out.println("\nTesting removeEvens...");
 	removeEvens(L);
 	for( int n : L ) System.out.println(n);
+	/*~~~~~~~~~~~~~~~m~o~v~e~~m~e~~d~o~w~n~~~~~~~~~~~~~~
+
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     }//end main

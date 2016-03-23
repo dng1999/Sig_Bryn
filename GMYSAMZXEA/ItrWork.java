@@ -48,9 +48,8 @@ public class ItrWork {
     public static List<Integer> oddsB( List<Integer> L ) { 
 	Iterator<Integer> list = L.iterator();
 	List<Integer> odd = new ArrayList<Integer>();
-	Integer num;
 	while (list.hasNext()){
-	    num = list.next();
+	    Integer num = list.next();
 	    if (num%2==1) odd.add(num);
 	}
 	return odd;

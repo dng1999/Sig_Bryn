@@ -19,8 +19,13 @@ public class Latkes {
     //means of insertion
     public void push( String s ) 
     { 
-	_stack[_stackSize] = s;
-	_stackSize++;
+	if (_stackSize<_stack.size()){
+	    _stack[_stackSize] = s;
+	    _stackSize++;
+	}
+	else {
+	    throw new ArrayIndexOutofBoundsException();
+	}
     }
     
     //means of removal

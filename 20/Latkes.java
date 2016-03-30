@@ -1,3 +1,10 @@
+/*
+Dorothy Ng
+APCS2 pd10
+HW20 -- Stacks on Stacks on Stacks on Stacks...
+2016-03-29
+ */
+
 /*****************************************************
  * skeleton for class Latkes
  * Implements a stack of Strings using an array as underlying container.
@@ -19,6 +26,7 @@ public class Latkes {
     //means of insertion
     public void push( String s ) 
     { 
+<<<<<<< HEAD
 	if (_stackSize<_stack.size()){
 	    _stack[_stackSize] = s;
 	    _stackSize++;
@@ -26,15 +34,30 @@ public class Latkes {
 	else {
 	    throw new ArrayIndexOutofBoundsException();
 	}
+=======
+	if (this.isFull()){
+	    String[] tmp = new String[_stack.length*2];
+	    for (int i=0;i<_stack.length;i++){
+		tmp[i]=_stack[i];
+	    }
+	    _stack=tmp;
+	}
+	_stack[_stackSize] = s;
+	_stackSize++;
+>>>>>>> a9355d3aa2d824e05de8dbff2ac274b935b82190
     }
     
     //means of removal
     public String pop( ) 
     { 
-	String tmp = _stack[_stackSize-1];
-	_stack[_stackSize-1] = "";
-	_stackSize--;
-	return tmp;
+	if (this.isEmpty()){	}
+	else{
+	    String tmp = _stack[_stackSize-1];
+	    _stack[_stackSize-1] = "";
+	    _stackSize--;
+	    return tmp;
+	}
+	return "";
     }
     
     //chk for emptiness
@@ -55,7 +78,7 @@ public class Latkes {
 	
 
 	Latkes tastyStack = new Latkes(10);
-	/*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
+
 	tastyStack.push("aoo");
 	tastyStack.push("boo");
 	tastyStack.push("coo");
@@ -96,6 +119,7 @@ public class Latkes {
 
 	//stack empty by now; SOP(null)
 	System.out.println( tastyStack.pop() );
+	/*v~~~~~~~~~~~~~~MAKE MORE~~~~~~~~~~~~~~v
 	  ^~~~~~~~~~~~~~~~AWESOME~~~~~~~~~~~~~~~^*/
 
     }//end main()

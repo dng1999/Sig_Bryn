@@ -7,24 +7,47 @@
 public class Latkes<T> implements Stack<T> {
 
     private T [] _stack;
-    private int _stackSize;
+    private int _stackSize; //first empty element in array
 
 
     //constructor
-    public Latkes() 
-	{ 
-	    //typecasting hard to avoid here:
-	    _stack = ( T[] )new Object[42]; 
-	    //...
+    public Latkes() { 
+	//typecasting hard to avoid here:
+	_stack = (T[])new Object[42]; 
+	//...
+	_stackSize = 0;
     }
-
+    
 
     //overloaded constructor allows for intial capacity declaration
-    public Latkes( int size ) 
-	{ 
-
+    public Latkes( int size ) { 
+	_stack = (T[])new Object[size];
+	_stackSize = 0;
+    }
+    
+    //Return true if this stack is empty, otherwise false.
+    public boolean isEmpty() {
+	return _stackSize == 0;
     }
 
+    //Return top element of stack without popping it.
+    public T peek() {
+	return _stack[_stackSize];
+    }
+
+    //Pop and return top element of stack.
+    public T pop() {
+	T tmp = _stack[_stackSize];
+	_stack[_stackSize-1] = null;
+	_stackSize--;
+	return tmp;
+    }
+    
+    //Push an element onto top of this stack.
+    public void	push( T x ){
+	_stack[_stackSize] = x;
+	_stackSize++;
+    }
 
     //main method for testing
     public static void main( String[] args ) {

@@ -1,9 +1,3 @@
-/*
-Dorothy Ng
-APCS2 pd10
-HW22 -- Standardization
-2016-03-31
- */
 /*****************************************************
  * skeleton for class Latkes
  * Implements stack of Strings using array as underlying container.

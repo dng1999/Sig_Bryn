@@ -1,1 +1,0 @@
-Team Doughnut Cat ready to make some linked list stacks.

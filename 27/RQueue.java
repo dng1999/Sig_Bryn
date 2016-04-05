@@ -55,8 +55,8 @@ public class RQueue<T> implements Queue<T> {
     /******************************************
      * void sample() -- a means of "shuffling" the queue
      * Algo:
-     * ...
-     * 
+     * 1. Create a new RQueue (will be referred to as 'neu'). It will be empty.
+     * 2. Randomly choose from
     ******************************************/
     public void sample () {
 

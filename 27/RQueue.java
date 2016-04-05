@@ -21,26 +21,34 @@ public class RQueue<T> implements Queue<T> {
 
 
     // default constructor creates an empty queue
-    public RQueue() 
-	{ 
-	}//end default constructor
-
-
-    public void enqueue( T enQVal ) 
-    {
+    public RQueue() { 
+	_front = null;
+	_end = null;
+    }//end default constructor
+    
+    
+    public void enqueue( T enQVal ) {
+	if (_front == null){
+	    _front = new LLNode<T>(enQVal,_end);
+	    _end = new LLNode<T>(enQVal,null);
+	}
+	else {
+	    LLNode<T> neo = new LLNode<T>(enQVal,null);
+	    _end.setNext(neo);
+	    _end = neo;
+	}
     }//end enqueue()
 
 
     // remove and return thing at front of queue
     // assume _queue ! empty
-    public T dequeue() 
-    { 
+    public T dequeue() { 
+	return null;
     }//end dequeue()
 
 
-    public T peekFront() 
-    {
-
+    public T peekFront() {
+	return null;
     }
 
 
@@ -50,22 +58,19 @@ public class RQueue<T> implements Queue<T> {
      * ...
      * 
     ******************************************/
-    public void sample () 
-    {
+    public void sample () {
 
     }//end sample()
 
 
-    public boolean isEmpty() 
-    {
-
+    public boolean isEmpty() {
+	return false;
     } //O(?)
 
 
     // print each node, separated by spaces
-    public String toString() 
-    { 
-
+    public String toString() { 
+	return "";
     }//end toString()
 
 

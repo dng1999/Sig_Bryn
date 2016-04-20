@@ -1,3 +1,10 @@
+/*
+Dorothy Ng
+APCS2 pd10
+HW34 -- An Optimized Version of This is Java’s Built-in Sort Mechanism
+2016-04-19
+ */
+
 /*****************************************************
  * class QuickSort
  * Implements quicksort algo to sort an array of ints in place

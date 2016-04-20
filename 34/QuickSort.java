@@ -15,107 +15,106 @@
 
 public class QuickSort {
 
-    //--------------v  HELPER METHODS  v--------------
-    //swap values at indices x, y in array o
-    public static void swap( int x, int y, int[] o ) {
-	int tmp = o[x];
-	o[x] = o[y];
-	o[y] = tmp;
-    }
+   //--------------v  HELPER METHODS  v--------------
+   //swap values at indices x, y in array o
+   public static void swap( int x, int y, int[] o ) {
+      int tmp = o[x];
+      o[x] = o[y];
+      o[y] = tmp;
+   }
 
-    //print input array 
-    public static void printArr( int[] a ) {
-	for ( int o : a )
-	    System.out.print( o + " " );
-	System.out.println();
-    }
+   //print input array 
+   public static void printArr( int[] a ) {
+      for ( int o : a )
+         System.out.print( o + " " );
+      System.out.println();
+   }
 
-    //shuffle elements of input array
-    public static void shuffle( int[] d ) {
-	int tmp;
-	int swapPos;
-	for( int i = 0; i < d.length; i++ ) {
-	    tmp = d[i];
-	    swapPos = i + (int)( (d.length - i) * Math.random() );
-	    swap( i, swapPos, d );
-	}
-    }
+   //shuffle elements of input array
+   public static void shuffle( int[] d ) {
+      int tmp;
+      int swapPos;
+      for( int i = 0; i < d.length; i++ ) {
+         tmp = d[i];
+         swapPos = i + (int)( (d.length - i) * Math.random() );
+         swap( i, swapPos, d );
+      }
+   }
 
-    //return int array of size s, with each element fr range [0,maxVal)
-    public static int[] buildArray( int s, int maxVal ) {
-	int[] retArr = new int[s];
-	for( int i = 0; i < retArr.length; i++ )
-	    retArr[i] = (int)( maxVal * Math.random() );
-	return retArr;
-    }
-    //--------------^  HELPER METHODS  ^--------------
+   //return int array of size s, with each element fr range [0,maxVal)
+   public static int[] buildArray( int s, int maxVal ) {
+      int[] retArr = new int[s];
+      for( int i = 0; i < retArr.length; i++ )
+         retArr[i] = (int)( maxVal * Math.random() );
+      return retArr;
+   }
+   //--------------^  HELPER METHODS  ^--------------
 
 
 
-    /*****************************************************
+   /*****************************************************
      * void qsort(int[])
      * @param d -- array of ints to be sorted in place
      *****************************************************/
-    public static void qsort( int[] d ) { 
-	partition(d, 0, d.length-1);
-    }
-    
-    //partition the array around a pivot
-    //return pos of pivot
-    public static void partition (int[] arr, int left, int right) {
-	if (arr.length() <= 1) return;	
+   public static void qsort( int[] d ) { 
+      partition(d, 0, d.length-1);
+   }
 
-	int pvtPos = ((right - left) / 2) + left;
-	int pvtVal = arr[pvtPos];
-	swap (arr, pvtPos, right);
-	
-	int savPos = left;
-	for (int i = left; i < right; i++) {
-	    if (arr[i] < pvtVal) {
-		swap (arr, savPos, i);
-		savPos++;
-	    }
-	}
-	swap (arr, right, savPos);
-	
-	partition(arr, left, savPos-1);
-	partition(arr, savPos+1, right);
-    }
+   //partition the array around a pivot
+   //return pos of pivot
+   public static void partition (int[] arr, int left, int right) {
+      if ((right - left) <= 1) return;	
 
+      int pvtPos = ((right - left) / 2) + left;
+      int pvtVal = arr[pvtPos];
+      swap (pvtPos, right, arr);
 
-    //main method for testing
-    public static void main( String[] args ) {
+      int savPos = left;
+      for (int i = left; i < right; i++) {
+         if (arr[i] < pvtVal) {
+            swap (savPos, i, arr);
+            savPos++;
+         }
+      }
+      swap (right, savPos, arr);
 
-	/*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
-
-	//get-it-up-and-running, static test case:
-	int [] arr1 = {7,1,5,12,3};
-	System.out.println("\narr1 init'd to: " );
-	printArr(arr1);
-
-	qsort( arr1 );	
-       	System.out.println("arr1 after qsort: " );
-	printArr(arr1);
-
-	// randomly-generated arrays of n distinct vals
-	int[] arrN = new int[10];
-	for( int i = 0; i < arrN.length; i++ )
-	    arrN[i] = i;
-       
-	System.out.println("\narrN init'd to: " );
-	printArr(arrN);
-
-       	shuffle(arrN);
-       	System.out.println("arrN post-shuffle: " );
-	printArr(arrN);
-
-	qsort( arrN );
-	System.out.println("arrN after sort: " );
-	printArr(arrN);
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      partition(arr, left, savPos-1);
+      partition(arr, savPos+1, right);
+   }
 
 
-	/*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
+   //main method for testing
+   public static void main( String[] args ) {
+
+      //get-it-up-and-running, static test case:
+      int [] arr1 = {7,1,5,12,3};
+      System.out.println("\narr1 init'd to: " );
+      printArr(arr1);
+
+      qsort( arr1 );	
+      System.out.println("arr1 after qsort: " );
+      printArr(arr1);
+      /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
+
+      // randomly-generated arrays of n distinct vals
+      int[] arrN = new int[10];
+      for( int i = 0; i < arrN.length; i++ )
+         arrN[i] = i;
+
+      System.out.println("\narrN init'd to: " );
+      printArr(arrN);
+
+      shuffle(arrN);
+      System.out.println("arrN post-shuffle: " );
+      printArr(arrN);
+
+      qsort( arrN );
+      System.out.println("arrN after sort: " );
+      printArr(arrN);
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+         /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
 
 	//get-it-up-and-running, static test case w/ dupes:
 	int [] arr2 = {7,1,5,12,3,7};
@@ -131,7 +130,7 @@ public class QuickSort {
 	int[] arrMatey = new int[20];
 	for( int i = 0; i < arrMatey.length; i++ )
 	    arrMatey[i] = (int)( 48 * Math.random() );
-       
+
 	System.out.println("\narrMatey init'd to: " );
 	printArr(arrMatey);
 
@@ -144,6 +143,6 @@ public class QuickSort {
 	printArr(arrMatey);
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-    }//end main
+   }//end main
 
 }//end class QuickSort

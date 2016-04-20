@@ -10,8 +10,8 @@ public class FastSelect {
     //partition the array around a pivot
     //return pos of pivot
     public static void partition (int[] arr, int left, int right, int pvtPos) {
+	if (arr.length <= 1) return;
 	
-
 	int pvtVal = arr[pvtPos];
 	swap (arr, pvtPos, right);
 	
@@ -23,7 +23,8 @@ public class FastSelect {
 	    }
 	}
 	swap (arr, right, savPos);
-	
+	partition (arr, left, savPos-1, left);
+	partition (arr, savPos+1, right,  right);
     }
     
     /**

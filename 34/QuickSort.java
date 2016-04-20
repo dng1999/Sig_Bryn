@@ -61,6 +61,25 @@ public class QuickSort {
     }
 
     //you may need a helper method...
+    
+    //partition the array around a pivot
+    //return pos of pivot
+    public static void partition (int[] arr, int left, int right, int pvtPos) {
+	
+
+	int pvtVal = arr[pvtPos];
+	swap (arr, pvtPos, right);
+	
+	int savPos = left;
+	for (int i = left; i < right; i++) {
+	    if (arr[i] < pvtVal) {
+		swap (arr, savPos, i);
+		savPos++;
+	    }
+	}
+	swap (arr, right, savPos);
+	
+    }
 
 
     //main method for testing

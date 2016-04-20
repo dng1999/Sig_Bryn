@@ -3,14 +3,20 @@
  * Implements quicksort algo to sort an array of ints in place
  *
  * 1. Summary of QuickSort algorithm:
- * QSort(arr): 
+ * 	Partition around the pivot.
+ * 	Partition within unsorted areas.
+ * 	Continue to partition until area of consideration only has one element.
  *
  * 2a. Worst pivot choice and associated runtime: 
+ * 	Choosing the left/rightmost element
+ * 	O(n^2)
  *
  * 2b. Best pivot choice and associated runtime:
- *
+ *	Choosing the middle element
+ * 	O(n log n)
+ * 
  * 3. Approach to handling duplicate values in array:
- *
+ *	Treat them as less than the pivot.
  *****************************************************/
 
 public class QuickSort {

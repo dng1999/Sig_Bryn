@@ -63,7 +63,7 @@ public class QuickSort {
    //partition the array around a pivot
    //return pos of pivot
    public static void partition (int[] arr, int left, int right) {
-      if ((right - left) <= 1) return;	
+      if ((right - left) <= 0) return;	
 
       int pvtPos = ((right - left) / 2) + left;
       int pvtVal = arr[pvtPos];
@@ -94,8 +94,7 @@ public class QuickSort {
       qsort( arr1 );	
       System.out.println("arr1 after qsort: " );
       printArr(arr1);
-      /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
-
+      
       // randomly-generated arrays of n distinct vals
       int[] arrN = new int[10];
       for( int i = 0; i < arrN.length; i++ )
@@ -111,11 +110,11 @@ public class QuickSort {
       qsort( arrN );
       System.out.println("arrN after sort: " );
       printArr(arrN);
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+      
 
-
-         /*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
-
+      
 	//get-it-up-and-running, static test case w/ dupes:
 	int [] arr2 = {7,1,5,12,3,7};
 	System.out.println("\narr2 init'd to: " );
@@ -141,7 +140,8 @@ public class QuickSort {
 	qsort( arrMatey );
 	System.out.println("arrMatey after sort: " );
 	printArr(arrMatey);
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	/*~~~~s~l~i~d~e~~~m~e~~~d~o~w~n~~~~~~~~~~~~~~~~~~~~ (C-k, C-k, C-y) 
+	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
    }//end main
 

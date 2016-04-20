@@ -57,16 +57,15 @@ public class QuickSort {
      * @param d -- array of ints to be sorted in place
      *****************************************************/
     public static void qsort( int[] d ) { 
-
+	partition(d, 0, d.length-1);
     }
-
-    //you may need a helper method...
     
     //partition the array around a pivot
     //return pos of pivot
-    public static void partition (int[] arr, int left, int right, int pvtPos) {
-	
+    public static void partition (int[] arr, int left, int right) {
+	if (arr.length() <= 1) return;	
 
+	int pvtPos = ((right - left) / 2) + left;
 	int pvtVal = arr[pvtPos];
 	swap (arr, pvtPos, right);
 	
@@ -79,6 +78,8 @@ public class QuickSort {
 	}
 	swap (arr, right, savPos);
 	
+	partition(arr, left, savPos-1);
+	partition(arr, savPos+1, right);
     }
 
 

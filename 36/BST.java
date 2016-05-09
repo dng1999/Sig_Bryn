@@ -12,12 +12,13 @@
 public class BST {
 
     //instance variables / attributes of a BST:
+    TreeNode _first;
 
     /*****************************************************
      * default constructor
      *****************************************************/
-    BST( ) {
-	/*** YOUR IMPLEMENTATION HERE ***/
+    public BST( ) {
+	_first = null;
     }
 
 
@@ -26,7 +27,12 @@ public class BST {
      * Adds a new data element to the tree at appropriate location.
      *****************************************************/
     public void insert( int newVal ) {
-     	/*** YOUR IMPLEMENTATION HERE ***/
+     	if (_first == null) {
+	    _first = new TreeNode(newVal);
+	}
+	else  {
+	    /*insert food here*/
+	}
     }
 
 
@@ -36,9 +42,22 @@ public class BST {
     // each traversal should simply print to standard out 
     // the nodes visited, in order
 
+    public void preOrderTrav(TreeNode a){
+	System.out.print(a.getValue+" ");
+	if (a.getLeft() != null) {
+	    preOrderTrav(a.getLeft());
+	}
+	else if (a.getRight() != null) {
+	    preOrderTrav(a.getRight());
+	}
+	else {
+	    return;
+	}
+    } 
+
     public void preOrderTrav() 
     {
-    	/*** YOUR IMPLEMENTATION HERE ***/
+	preOrderTrav(_first);
     }
 
     public void inOrderTrav() 

@@ -1,3 +1,9 @@
+/* Dorothy Ng
+   APCS2 pd10
+   HW36 -- Algorithm as Data Structure
+   2016-05-09
+ */
+
 /*****************************************************
  * class BST - skeleton
  * Implementation of the BINARY SEARCH TREE abstract data type (ADT) 
@@ -12,13 +18,13 @@
 public class BST {
 
     //instance variables / attributes of a BST:
-    TreeNode _first;
+    TreeNode root;
 
     /*****************************************************
      * default constructor
      *****************************************************/
     public BST( ) {
-	_first = null;
+	root = null;
     }
 
 
@@ -26,13 +32,21 @@ public class BST {
      * void insert( int ) 
      * Adds a new data element to the tree at appropriate location.
      *****************************************************/
+    public TreeNode insert(int newVal, TreeNode a){
+	if (a == null){
+	    a = new TreeNode(newVal);
+	}
+	else if (a.getValue() < newVal){
+	    a.setLeft(insert(newVal, a.getLeft()));
+	}
+	else if (a.getValue() > newVal){
+	    a.setRight(insert(newVal, a.getRight()));
+	}
+	return a;
+    }
+
     public void insert( int newVal ) {
-     	if (_first == null) {
-	    _first = new TreeNode(newVal);
-	}
-	else  {
-	    /*insert food here*/
-	}
+     	root = insert(newVal, root);
     }
 
 
@@ -43,31 +57,35 @@ public class BST {
     // the nodes visited, in order
 
     public void preOrderTrav(TreeNode a){
-	System.out.print(a.getValue+" ");
-	if (a.getLeft() != null) {
-	    preOrderTrav(a.getLeft());
-	}
-	else if (a.getRight() != null) {
-	    preOrderTrav(a.getRight());
-	}
-	else {
-	    return;
-	}
-    } 
-
+	System.out.print(a.getValue()+" ");
+	if (a.getLeft() != null) preOrderTrav(a.getLeft());
+	if (a.getRight() != null) preOrderTrav(a.getRight());
+    }
+    
     public void preOrderTrav() 
     {
-	preOrderTrav(_first);
+	preOrderTrav(root);
     }
-
-    public void inOrderTrav() 
-    {
-    	/*** YOUR IMPLEMENTATION HERE ***/
+    
+    public void inOrderTrav(TreeNode a){
+	if (a.getLeft() != null) inOrderTrav(a.getLeft());
+	System.out.print(a.getValue()+" ");
+	if (a.getRight() != null) inOrderTrav(a.getRight());
     }
-
+    
+    public void inOrderTrav() {
+	inOrderTrav(root);
+    }
+    
+    public void postOrderTrav(TreeNode a){
+	if (a.getLeft() != null) postOrderTrav(a.getLeft());
+	if (a.getRight() != null) postOrderTrav(a.getRight());
+	System.out.print(a.getValue()+" ");
+    }
+	
     public void postOrderTrav() 
     {
-    	/*** YOUR IMPLEMENTATION HERE ***/
+	postOrderTrav(root);
     }
     //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -76,7 +94,6 @@ public class BST {
     //main method for testing
     public static void main( String[] args ) {
 
-	/*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
 	BST arbol = new BST();
 
 	arbol.insert( 4 );
@@ -94,7 +111,8 @@ public class BST {
 	
 	System.out.println( "\npost-order traversal:" );
 	arbol.postOrderTrav();	
-	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	/*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
+	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }
 
 }//end class

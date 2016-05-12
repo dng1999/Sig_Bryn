@@ -1,7 +1,7 @@
 /* Dorothy Ng
    APCS2 pd10
-   HW36 -- Algorithm as Data Structure
-   2016-05-09
+   HW37 -- Algorithm as Data Structure
+   2016-05-11
  */
 
 /*****************************************************
@@ -15,38 +15,55 @@
  * This BST only holds ints (its nodes have int cargo)
  *****************************************************/
 
-public class BST {
+public class ArrayST {
 
-    //instance variables / attributes of a BST:
-    TreeNode root;
+    //instance variables / attributes of a ArrayST:
+    int[] tree;
+    int height;
 
     /*****************************************************
      * default constructor
      *****************************************************/
-    public BST( ) {
-	root = null;
+    public ArrayST( ) {
+	tree = new int[0];
+	height = 0;
     }
 
+    public void expand(){
+	height++;
+	int[]b = new int[(int)(Math.pow(2,height) - 1)];
+	for (int i=0;i<b.length;i++){
+	    if (i<tree.length) b[i] = tree[i];
+	    else b[i] = -1;
+	}
+	tree = b;
+    }
+
+    public boolean isFull(){
+	for (int i=0;i<tree.length;i++){
+	    if (tree[i] == -1) return false; 
+	}
+	return true;
+    }
 
     /*****************************************************
      * void insert( int ) 
      * Adds a new data element to the tree at appropriate location.
      *****************************************************/
-    public TreeNode insert(int newVal, TreeNode a){
-	if (a == null){
-	    a = new TreeNode(newVal);
+    public void insert(int newVal, int index){
+	if (isFull()) expand();
+	if (tree[index]==-1) tree[index]=newVal;
+	else if (tree[index] < newVal){
+	    insert(newVal, index*2+1);
 	}
-	else if (a.getValue() < newVal){
-	    a.setLeft(insert(newVal, a.getLeft()));
+	else if (tree[index] > newVal){
+	    insert(newVal, (index+1)*2);
 	}
-	else if (a.getValue() > newVal){
-	    a.setRight(insert(newVal, a.getRight()));
-	}
-	return a;
+	return;
     }
 
     public void insert( int newVal ) {
-     	root = insert(newVal, root);
+	insert(newVal, 0);
     }
 
 
@@ -56,36 +73,42 @@ public class BST {
     // each traversal should simply print to standard out 
     // the nodes visited, in order
 
-    public void preOrderTrav(TreeNode a){
-	System.out.print(a.getValue()+" ");
-	if (a.getLeft() != null) preOrderTrav(a.getLeft());
-	if (a.getRight() != null) preOrderTrav(a.getRight());
+    public void preOrderTrav(int a){
+	if (a <tree.length && tree[a] != -1){
+	    System.out.print(tree[a]+" ");
+	    preOrderTrav(a*2+1);
+	    preOrderTrav((a+1)*2);
+	}
     }
     
     public void preOrderTrav() 
     {
-	preOrderTrav(root);
+	preOrderTrav(0);
     }
     
-    public void inOrderTrav(TreeNode a){
-	if (a.getLeft() != null) inOrderTrav(a.getLeft());
-	System.out.print(a.getValue()+" ");
-	if (a.getRight() != null) inOrderTrav(a.getRight());
+    public void inOrderTrav(int a){
+	if (a <tree.length && tree[a] != -1){
+	    inOrderTrav(a*2+1);
+	    System.out.print(tree[a]+" ");
+	    inOrderTrav((a+1)*2);
+	}
     }
     
     public void inOrderTrav() {
-	inOrderTrav(root);
+	inOrderTrav(0);
     }
     
-    public void postOrderTrav(TreeNode a){
-	if (a.getLeft() != null) postOrderTrav(a.getLeft());
-	if (a.getRight() != null) postOrderTrav(a.getRight());
-	System.out.print(a.getValue()+" ");
+    public void postOrderTrav(int a){
+	if (a <tree.length && tree[a] != -1){
+            postOrderTrav(a*2+1);
+	    postOrderTrav((a+1)*2);
+	    System.out.print(tree[a]+" ");
+	}
     }
 	
     public void postOrderTrav() 
     {
-	postOrderTrav(root);
+	postOrderTrav(0);
     }
     //~~~~~~~~~~~~~^~~TRAVERSALS~~^~~~~~~~~~~~~~~~~~~~~~
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,7 +117,7 @@ public class BST {
     //main method for testing
     public static void main( String[] args ) {
 
-	BST arbol = new BST();
+	ArrayST arbol = new ArrayST();
 
 	arbol.insert( 4 );
 	arbol.insert( 2 );

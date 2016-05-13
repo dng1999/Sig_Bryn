@@ -1,7 +1,7 @@
 /* Dorothy Ng
    APCS2 pd10
-   HW36 -- Algorithm as Data Structure
-   2016-05-09
+   HW38 -- Neighbourhood Search & Rescue
+   2016-05-12
  */
 
 /*****************************************************
@@ -19,14 +19,12 @@ public class BST {
 
     //instance variables / attributes of a BST:
     private TreeNode root;
-    private int height;
-
+    
     /*****************************************************
      * default constructor
      *****************************************************/
     public BST( ) {
 	root = null;
-	height = 0;
     }
 
 
@@ -38,24 +36,41 @@ public class BST {
 	if (a == null){
 	    a = new TreeNode(newVal);
 	}
-	else if (a.getValue() < newVal){
+	else if (a.getValue() > newVal){
 	    a.setLeft(insert(newVal, a.getLeft()));
 	}
-	else if (a.getValue() > newVal){
+	else if (a.getValue() < newVal){
 	    a.setRight(insert(newVal, a.getRight()));
 	}
 	return a;
     }
-
+    
     public void insert( int newVal ) {
      	root = insert(newVal, root);
-	height++;
     }
 
+    public int height(TreeNode a){
+	if (a==null) return 0;
+	if (a.getLeft() == null && a.getRight() == null) return 1;
+	int hL = height(a.getLeft());
+	int hR = height(a.getRight());
+	if (hL>hR) return 1+hL;
+	else return 1+hR;
+    }
+    
     public int height(){
-	return height;
+	return height(root);
     }
 
+    public int numLeaves(TreeNode a){
+	if (a==null) return 0;
+	if (a.getLeft() == null && a.getRight() == null) return 1;
+	return numLeaves(a.getLeft()) + numLeaves(a.getRight());
+    }
+
+    public int numLeaves(){
+	return numLeaves(root);
+    }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //~~~~~~~~~~~~~v~~TRAVERSALS~~v~~~~~~~~~~~~~~~~~~~~~
@@ -118,6 +133,12 @@ public class BST {
 	
 	System.out.println( "\npost-order traversal:" );
 	arbol.postOrderTrav();	
+
+	System.out.println( "\nheight:" );
+	System.out.println(arbol.height());
+			   
+	System.out.println( "\nnumber of leaves:" );
+	System.out.println(arbol.numLeaves());		
 	/*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
 	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }

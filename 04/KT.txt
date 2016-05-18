@@ -1,0 +1,6 @@
+Dorothy Ng
+APCS2 pd10
+HW04 — Knightly Exploration
+2015-02-24
+
+I would start at a corner of the board and try my best to move the knight towards the edges of the board before moving inwards. If I fail, then I restart again, this time taking a slightly different path from before. I’d keep doing this until I finally managed to complete the knight’s tour.

@@ -54,76 +54,56 @@ public class BST {
      * Removes a data element while keeping BST conventions.
      *****************************************************/
     public void remove(int val){
-	remove(root, val);
+	root = remove(root, val);
     }
 
-    public void remove(TreeNode a,int val){
-	TreeNode b = search(a, val);
-	if (a.getLeft() == null && a.getRight() == null){
-	    rm0(a);
+    public TreeNode remove(TreeNode a,int val){
+	//search
+	if (a == null) return a;
+	else if (a.getValue() > val) remove(a.getLeft(),val);
+	else if (a.getValue() < val) remove(a.getRight(),val);
+	//now assuming a is the TreeNode with val
+	//two
+	else if (a.getLeft() != null && a.getRight() != null){
+	    a.setValue(sMax(a.getLeft()).getValue());
+	    a.setLeft(remove(a.getRight(),a.getValue()));
 	}
-	if (a.getLeft() != null && a.getRight() != null){
-	    rm2(a);
+	//zero
+	else if (a.getLeft() == null && a.getRight() == null){
+	    a.setValue(-1);
+	    copy(root);
 	}
+	//one
 	else {
-	    rm1(a);
+	    if (a.getLeft() != null) {
+		a.setValue(sMax(a.getLeft()).getValue());
+		a.setLeft(remove(a.getRight(),a.getValue()));
+	    }
+	    else {
+		a.setValue(sMin(a.getRight()).getValue());
+		a.setRight(remove(a.getLeft(),a.getValue()));
+	    }
 	}
+	return a;
     }
 
-    public TreeNode searchL(TreeNode a, TreeNode tar){
-	if (a.getLeft() == null) return null;
-	if (a.getLeft().getValue() == tar.getValue()) return a;
-	else if (a.getLeft() != null) searchL(a.getLeft(),tar);
-	return null;
+    public void copy(TreeNode a){
+	int[] vals = new int[(int)(Math.pow(2,height(root)))];
+	int ctr = 0;
+	this.root = copy(a,vals,0);
     }
 
-    public TreeNode searchR(TreeNode a, TreeNode tar){
-	if (a.getRight() == null) return null;
-	if (a.getRight().getValue() == tar.getValue()) return a;
-	else if (a.getRight() != null) searchR(a.getRight(),tar);
-	return null;
-    }
-
-    public void rm0(TreeNode a){
-	TreeNode b = searchL(root,a);
-	TreeNode c;
-	if (b!=null) b.setLeft(null);
-	else if (b==null){
-	    b=searchR(root,a);
-	    c=new TreeNode(b.getValue());
-	    b=c;
+    public TreeNode copy(TreeNode a, int[] vals, int ctr){
+	vals[ctr] = a.getValue();
+        if (a.getLeft() != null)
+	    copy(a.getLeft(),vals,ctr++);
+        else if (a.getRight() != null)
+	    copy(a.getRight(),vals,ctr++);
+	BST cp = new BST();
+	for (int i = 0;i<=ctr;i++){
+	    if (vals[i] != -1) cp.insert(vals[i]);
 	}
-    }
-    
-    public TreeNode search(TreeNode a, int val){
-	if (a.getValue() == val) return a;
-        if (a.getLeft() != null) search(a.getLeft(),val);
-	if (a.getRight() != null) search(a.getRight(),val);
-	return null;
-    }
-    
-    public void rm1(TreeNode a){
-	if (a.getLeft() != null){
-	    TreeNode b = a.getLeft();
-	    a.setValue(b.getValue());
-	    remove(a.getLeft(),b.getValue());
-	}
-	if (a.getRight() != null){
-	    TreeNode b = a.getRight();
-	    a.setValue(b.getValue());
-            remove(a.getRight(),b.getValue());
-	}
-    }
-
-    public TreeNode searchMax(TreeNode a){
-	if (a.getRight() != null) searchMax(a.getRight());
-	return a;	
-    }
-    
-    public void rm2(TreeNode a){
-	TreeNode b = searchMax(root.getLeft());
-	a.setValue(b.getValue());
-	remove(a.getLeft(),b.getValue());
+	return cp.getRoot();
     }
 
     public int height(TreeNode a){
@@ -147,6 +127,31 @@ public class BST {
 
     public int numLeaves(){
 	return numLeaves(root);
+    }
+    
+    public TreeNode search(int val){
+	return search(root,val);
+    }
+    
+    public TreeNode search(TreeNode a, int val){
+	if (a.getValue() == val) return a;
+        if (a.getLeft() != null) search(a.getLeft(),val);
+	if (a.getRight() != null) search(a.getRight(),val);
+	return null;
+    }
+
+    public TreeNode sMax(TreeNode a){
+	if (a.getRight() != null) sMax(a.getRight());
+	return a;
+    }
+
+    public TreeNode sMin(TreeNode a){
+	if (a.getLeft() != null) sMin(a.getLeft());
+	return a;
+    }
+
+    public TreeNode getRoot(){
+	return root;
     }
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -203,26 +208,27 @@ public class BST {
 	
 	System.out.print("PRE-TEST TRAVERSELS\nPre: ");
 	arbol.preOrderTrav();
-	System.out.print("In: ");
+	System.out.print("\nIn: ");
 	arbol.inOrderTrav();
 
 	arbol.remove(1); //leaf test case
-	System.out.print("AFTER REMOVING LEAF OF VAL 1\nPre: ");
+	System.out.print("\nAFTER REMOVING LEAF OF VAL 1\nPre: ");
 	arbol.preOrderTrav();
-	System.out.print("In: ");
+	System.out.print("\nIn: ");
 	arbol.inOrderTrav();
 
 	arbol.remove(2); //one child test case
-	System.out.print("AFTER REMOVING NODE OF VAL 2\nPre: ");
+	System.out.print("\nAFTER REMOVING NODE OF VAL 2\nPre: ");
 	arbol.preOrderTrav();
-	System.out.print("In: ");
+	System.out.print("\nIn: ");
 	arbol.inOrderTrav();
 
 	arbol.remove(4); //root test case
-	System.out.print("AFTER REMOVING ROOT (OF VAL 4)\nPre: ");
+	System.out.print("\nAFTER REMOVING ROOT (OF VAL 4)\nPre: ");
 	arbol.preOrderTrav();
-	System.out.print("In: ");
+	System.out.print("\nIn: ");
 	arbol.inOrderTrav();
+	System.out.println();
 	/*~~~~~~~~~~~~move~me~down~~~~~~~~~~~~~~~~~~~~~~
 	  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     }

@@ -1,0 +1,11 @@
+Dorothy Ng
+APCS2 pd10
+HW08 -- Splittin n Mergin
+2016-03-03
+
+1. Split deck into two piles.
+2. Continue to split until each pile consists of only one card.
+3. If there is only one card in a pile, the pile is sorted. Return the card to pile it came from.
+4. When both halves of the pile return, sort the pile by least value to greatest value.
+5. If one half of the pile is empty and the other half isn't, then it's safe to assume that the non-empty pile is sorted and there's no need to sort it again.
+6. Repeat until you only have one pile in total left.

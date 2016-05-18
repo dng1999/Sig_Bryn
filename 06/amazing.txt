@@ -1,0 +1,15 @@
+Dorothy Ng
+APCS2 pd10
+HW06 -- A Maiz
+2016-02-29
+
+My idea was similar to the Knight Tour algorithm, though I didn't really think about it until we mentioned it in class.
+
+Movement Priority: up, right, down, left
+
+1. Start somewhere.
+2. Look at the 4 possible moves you can make in movement priority order.
+3. If yay, then move forward. Record movement by marking the tile you're standing on. (numbers? symbols?)
+4. If nay, then move back. Remove the marking on the tile you were just standing on.
+	probably by checking if surrounded by marked tiles/walls
+5. Repeat until the end has been found.

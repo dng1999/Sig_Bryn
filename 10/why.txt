@@ -1,0 +1,33 @@
+Team HappyBunnies - Zicheng Zhen, Vincent Liok, Dorothy Ng
+APCS2 pd10
+HW10 -- Justify / Determining Big-O of MergeSort
+2016-03-08
+
+For a data set with n elements, there will be:
+	ceiling(log_2{n}) layers of sorting
+	ceiling(log_2{n}) layers of merging
+This is because the recursive call is merge(sort(n/2), sort(n/2)). You only
+need to halve the the search space ceiling(log_2{n}) times, which means the
+splitting of the data set runs in O(log n). 
+Assuming that we need to create deep copies of the initial data set for merging and sorting, we can conclude that merging is done in O(n) time. When merging two sets, there will be at most n elements in the two lists to merge, and the method will touch each element of each list once. Likewise, sorting is O(n). In order to create two smaller lists by using a deep copy, each element in the original list will be touched and added to one of the smaller lists.
+	Because sorting and merging run in logarithmic time, and sorting and merging both run in linear time, MergeSort must run in O(n) * O(log n) time, or O(n log n) time.
+
+Simple Trace:
+Layer 0: [6,4,1,7,2,3,9,5,8]
+	call sort 2 times
+Layer 1: [6,4,1,7]   [2,3,9,5,8]
+	call sort 4 times
+Layer 2: [6,4]   [1,7]   [2,3]   [9,5,8]
+ 	call sort 8 times
+Layer 3: [6]   [4]   [1]   [7]   [2]   [3]   [9]   [5,8]
+	call sort 2 times 
+Layer 4: [6]   [4]   [1]   [7]   [2]   [3]   [9]   [5]   [8]
+	begin merging
+	merge 4 times
+Layer 5: [4,6]   [1,7]   [2,3]   [9]   [5,8]
+	merge 2 times
+Layer 6: [1,4,6,7]   [2,3]   [5,8,9]
+	merge 1 time
+Layer 7: [1,4,6,7]   [2,3,5,8,9]
+	merge 1 time
+Layer 8: [1,2,3,4,5,6,7,8,9]

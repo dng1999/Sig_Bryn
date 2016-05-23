@@ -28,7 +28,11 @@ public class ALHeap {
      *****************************************************/
     public String toString() 
     {
-	return "";
+	String str = "";
+	for (int i=0;i<_heap.size();i++){
+	    str+= _heap.get(i)+" ";
+	}
+	return str;
     }//O(?)
 
 
@@ -40,7 +44,7 @@ public class ALHeap {
     public boolean isEmpty() 
     {
 	return _heap.isEmpty(); 
-    } //O(?)
+    } //O(1)
 
 
 
@@ -52,7 +56,7 @@ public class ALHeap {
     public Integer peekMin() 
     { 
 	return _heap.get(0);
-    } //O(?)
+    } //O(1)
 
 
 

@@ -1,0 +1,25 @@
+Dorothy Ng
+APCS2 pd10
+HW02 — Exploration
+2016-02-22
+
+a) 2x2
+This case has no solution. There is only one distinct place where you can place a queen on the grid and one queen can cover all the squares.
+
+b) 3x3
+This case has no solution. There is only two distinct places where you can place a queen. Two queens will cover every square.
+
+c) 4x4
+This case has one solution. By placing a queen on each edge of the grid on block away from the corner, you can have 4 queens without interfering with each other.
+
+d) 5x5
+There are two solutions to this case. The first one is to place the queens in a way so that a knight can land upon each queen only once. The second one is to place a queen in the center, and then imitate the solution from the 4x4 on the edge of the grid.
+
+e) 6x6
+There is one solution to this case. Follow the path of a knight if it were to only move down to the right, starting from the second square of the first row and then again starting from the first square of the fourth row.
+
+f) 7x7
+There is a solution. Start from the corner and move down and to the right as if a knight. When you hit the edge, start on the next row, second square and repeat.
+
+g) 8x8
+There are two solutions. These solutions all employ the knight’s path. By starting at each square and moving across , you can find a solution. The first one is to start on the fourth square of the first row and move across three, down one, until you hit an edge. Then move down three and across one. The same is reflected on the other side of the board. The other solution starts on the second square of the first row. Move across the board to the right until you hit the edge. The four remaining queen can be placed as two sets of a single knight move.

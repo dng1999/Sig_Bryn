@@ -1,3 +1,9 @@
+/*
+Dorothy Ng
+APCS2 pd10
+HW 43 -- Heap of Trouble
+2016-05-23
+ */
 /*****************************************************
  * class ALHeap
  * Implements a min heap using an ArrayList as underlying container
@@ -172,7 +178,6 @@ public class ALHeap {
 	  pile.add(9);
 	  System.out.println(pile);
 
-	/*--V--------------MOVE ME DOWN------------------V---
 	  System.out.println("removing " + pile.removeMin() + "...");
 	  System.out.println(pile);
 	  System.out.println("removing " + pile.removeMin() + "...");
@@ -196,6 +201,7 @@ public class ALHeap {
 	  System.out.println("removing " + pile.removeMin() + "...");
 	  System.out.println(pile);
 
+	  /*--V--------------MOVE ME DOWN------------------V---
 	  ==|============================================|===*/
 
     }//end main()
